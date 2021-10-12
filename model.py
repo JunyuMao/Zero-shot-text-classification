@@ -75,7 +75,7 @@ class Arch2(nn.Module):
         emb_text = self.embedding(text)  # (batch_size, seq_len, emb_dim)
         emb_tag = self.embedding(tag)  # (batch_size, topic_len, emb_dim)
 
-        #Pack padded sequence(这里需要验证一下pack后输入lstm得到的hidden state是什么)
+        #Pack padded sequence
         w = pack_padded_sequence(emb_text, list(text_length),
                                  batch_first=True)
         w, (final_hidden_state, _) = self.lstm(w)  # (1, batch_size, emb_dim)
